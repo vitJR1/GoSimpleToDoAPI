@@ -1,4 +1,4 @@
-package service
+package todo
 
 import (
 	"GoSimpleAPI/src/modules/todo/dto"

@@ -1,8 +1,7 @@
-package controller
+package users
 
 import (
 	"GoSimpleAPI/src/modules/users/dto"
-	"GoSimpleAPI/src/modules/users/service"
 	"GoSimpleAPI/src/modules/utils/response/error"
 	"github.com/gin-gonic/gin"
 	"net/http"
@@ -10,10 +9,10 @@ import (
 )
 
 type UserController struct {
-	userService *service.UserService
+	userService *UserService
 }
 
-func NewUserController(userService *service.UserService) *UserController {
+func NewUserController(userService *UserService) *UserController {
 	return &UserController{userService}
 }
 

@@ -1,4 +1,4 @@
-package service
+package users
 
 import (
 	"GoSimpleAPI/src/modules/users/dto"

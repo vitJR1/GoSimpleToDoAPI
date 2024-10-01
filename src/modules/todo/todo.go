@@ -1,19 +1,17 @@
 package todo
 
 import (
-	"GoSimpleAPI/src/modules/todo/controller"
-	"GoSimpleAPI/src/modules/todo/service"
 	"gorm.io/gorm"
 )
 
 type Module struct {
-	Controller *controller.TodoController
-	Service    *service.TodoService
+	Controller *TodoController
+	Service    *TodoService
 }
 
 func NewTodoModule(db *gorm.DB) *Module {
-	todoService := service.NewTodoService(db)
-	todoController := controller.NewTodoController(todoService)
+	todoService := NewTodoService(db)
+	todoController := NewTodoController(todoService)
 
 	return &Module{
 		Controller: todoController,

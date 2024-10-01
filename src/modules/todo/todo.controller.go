@@ -1,8 +1,7 @@
-package controller
+package todo
 
 import (
 	"GoSimpleAPI/src/modules/todo/dto"
-	"GoSimpleAPI/src/modules/todo/service"
 	"GoSimpleAPI/src/modules/utils/response/error"
 	"github.com/gin-gonic/gin"
 	"net/http"
@@ -10,10 +9,10 @@ import (
 )
 
 type TodoController struct {
-	todoService *service.TodoService
+	todoService *TodoService
 }
 
-func NewTodoController(todoService *service.TodoService) *TodoController {
+func NewTodoController(todoService *TodoService) *TodoController {
 	return &TodoController{todoService}
 }
 
