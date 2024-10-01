@@ -3,6 +3,7 @@ package todo
 import (
 	"GoSimpleAPI/src/modules/todo/controller"
 	"GoSimpleAPI/src/modules/todo/service"
+	"gorm.io/gorm"
 )
 
 type Module struct {
@@ -10,8 +11,8 @@ type Module struct {
 	Service    *service.TodoService
 }
 
-func NewTodoModule() *Module {
-	todoService := service.NewTodoService()
+func NewTodoModule(db *gorm.DB) *Module {
+	todoService := service.NewTodoService(db)
 	todoController := controller.NewTodoController(todoService)
 
 	return &Module{

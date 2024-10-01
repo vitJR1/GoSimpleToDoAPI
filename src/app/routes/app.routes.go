@@ -2,12 +2,15 @@ package routes
 
 import (
 	_ "GoSimpleAPI/src/app/docs"
-	"GoSimpleAPI/src/modules/todo/routes"
+	"GoSimpleAPI/src/modules/todo"
+	"GoSimpleAPI/src/modules/users"
 	"github.com/gin-gonic/gin"
+	"gorm.io/gorm"
 )
 
-func SetupRoutes(router *gin.Engine) {
+func SetupModules(router *gin.Engine, db *gorm.DB) {
 	router.GET("/", HelloWorld)
 
-	routes.SetupTodoRoutes(router)
+	todo.InitTodoModule(router, db)
+	users.InitUserModule(router, db)
 }

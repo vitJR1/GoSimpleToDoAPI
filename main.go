@@ -1,6 +1,8 @@
 package main
 
 import (
+	"GoSimpleAPI/src/app/config"
+	"GoSimpleAPI/src/app/database"
 	"GoSimpleAPI/src/app/routes"
 	"github.com/gin-gonic/gin"
 	swaggerfiles "github.com/swaggo/files"
@@ -13,11 +15,25 @@ import (
 // @host localhost:8080
 // @BasePath /
 func main() {
+	err := config.Init()
+	if err != nil {
+		return
+	}
+
+	err = database.Connect(config.CFG)
+
+	if err != nil {
+		return
+	}
+
 	r := gin.Default()
 
 	r.GET("/docs/*any", ginSwagger.WrapHandler(swaggerfiles.Handler))
 
-	routes.SetupRoutes(r)
+	routes.SetupModules(r, database.DB)
 
-	r.Run()
+	err = r.Run()
+	if err != nil {
+		return
+	}
 }

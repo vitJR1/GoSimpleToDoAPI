@@ -4,6 +4,7 @@ import (
 	"GoSimpleAPI/src/modules/todo/dto"
 	"GoSimpleAPI/src/modules/todo/entity"
 	"errors"
+	"gorm.io/gorm"
 	"sort"
 	"strings"
 )
@@ -12,7 +13,7 @@ type TodoService struct {
 	todos []entity.Todo
 }
 
-func NewTodoService() *TodoService {
+func NewTodoService(db *gorm.DB) *TodoService {
 	return &TodoService{
 		todos: []entity.Todo{},
 	}

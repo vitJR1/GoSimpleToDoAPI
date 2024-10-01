@@ -1,12 +1,12 @@
-package routes
+package todo
 
 import (
-	"GoSimpleAPI/src/modules/todo"
 	"github.com/gin-gonic/gin"
+	"gorm.io/gorm"
 )
 
-func SetupTodoRoutes(router *gin.Engine) {
-	todoController := todo.NewTodoModule().Controller
+func InitTodoModule(router *gin.Engine, db *gorm.DB) {
+	todoController := NewTodoModule(db).Controller
 	todoRoutes := router.Group("/todo")
 	{
 		todoRoutes.GET("", todoController.GetToDoList)
