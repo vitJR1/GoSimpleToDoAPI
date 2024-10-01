@@ -6,7 +6,8 @@ import (
 )
 
 func InitUserModule(router *gin.Engine, db *gorm.DB) {
-	userController := NewUserModule(db).Controller
+	userService := NewUserService(db)
+	userController := NewUserController(userService)
 
 	userRoutes := router.Group("/user")
 	{
